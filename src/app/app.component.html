@@ -4,6 +4,7 @@
     margin-right: 20px;
   }
 </style>
+
 <nav class="navbar navbar-dark bg-primary">
   <a class="navbar-brand" href="/">Primer Crud Angular</a>
 </nav>
@@ -12,7 +13,7 @@
     <div class="col-md-8 mt-4">
       <!-- mt -4 espacio en blanco vertical -->
       <ul class="list-group">
-        <li *ngFor="let alumno of alumnoArray" class="list-group-item list-group-item-action" (click)="openForEdit(alumno" [class.active]="alumno == selectedAlumno">
+        <li *ngFor="let alumno of alumnoArray" class="list-group-item list-group-item-action" (click)="openForEdit(alumno)" [class.active]="alumno == selectedAlumno">
           <span class="badge badge-primary">{{alumno.id}}</span>
           -{{alumno.name}}
           -{{alumno.lastname}}
@@ -25,10 +26,26 @@
             <h3>{{selectedAlumno.id == 0 ? "Agregar Nuevo Alumno" : "Actualizar Alumno"}}</h3>
           </div>
           <div class="form-group">
-            <input type="text"  >
+            <input type="text" [(ngModel)]="selectedAlumno.name" placeholder="name" class="form-control">
           </div>
+          <div class="form-group">
+            <input type="text" [(ngModel)]="selectedAlumno.lastname" placeholder="lastname" class="form-control">
+          </div>
+          <div class="form-group">
+            <input type="number" [(ngModel)]="selectedAlumno.age" placeholder="age" class="form-control">
+          </div>
+          <button (click)="addOrEdit()" class="btn btn-primary btn-space">
+            Guardar
+          </button>
+          <button *ngIf="selectedAlumno.id !== 0" class="btn btn-danger" (click)="delete()">
+            Eliminar
+          </button>
         </div>
       </div>
+    </div>
+    <div class="col-md-4">
+      <!-- md-4 espacio en blanco vertical -->
+      <img width="300" alt="Angular logo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/768px-Angular_full_color_logo.svg.png">
     </div>
   </div>
 </div>
